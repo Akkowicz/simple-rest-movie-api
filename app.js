@@ -13,13 +13,15 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Connection error:'));
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.get('/', (req, res) => res.json({ message: 'Welcome to our Movie API! Available routes: GET /movies, GET /comments, POST /movies [Movie Title], POST /comments [Movie ID]' }));
 
 app.route('/movies')
   .get(movies.getMovies)
-  .post(movies.postMovie);
+  .post(movies.addMovie);
 app.route('/comments/:id')
-  .get(movies.getMovieById);
+  .get(comments.getCommentsByFilmId);
 app.route('/comments')
   .get(comments.getComments)
   .post(comments.addComment);
