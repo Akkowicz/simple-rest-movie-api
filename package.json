@@ -1,0 +1,25 @@
+{
+  "name": "simple-rest-movie-api",
+  "version": "0.0.1",
+  "description": "Simple REST API for OMDB interactions",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Akkowicz/simple-rest-movie-api.git"
+  },
+  "keywords": [
+    "simple",
+    "rest",
+    "api",
+    "omdb"
+  ],
+  "author": "Mateusz Przybylowicz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Akkowicz/simple-rest-movie-api/issues"
+  },
+  "homepage": "https://github.com/Akkowicz/simple-rest-movie-api#readme"
+}
