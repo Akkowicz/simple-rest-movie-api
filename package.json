@@ -21,5 +21,16 @@
   "bugs": {
     "url": "https://github.com/Akkowicz/simple-rest-movie-api/issues"
   },
-  "homepage": "https://github.com/Akkowicz/simple-rest-movie-api#readme"
+  "homepage": "https://github.com/Akkowicz/simple-rest-movie-api#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "mongoose": "^5.2.3",
+    "request": "^2.87.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
+    "mocha": "^5.2.0"
+  }
 }
