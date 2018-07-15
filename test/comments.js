@@ -1,23 +1,23 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const app = require('../app');
-const Movie = require('../models/movie');
-
+const Comment = require('../models/comment');
+const movieTest = require('./movies');
 const should = chai.should();
 chai.use(chaiHttp);
 
 // Clean db before tests
-describe('Movies', () => {
+describe('Comments', () => {
   before((done) => {
-    Movie.remove({}, (err) => {
+    Comment.remove({}, (err) => {
       done();
     });
   });
   // test get route
-  describe('/GET movies', () => {
-    it('it should GET all the movies', (done) => {
+  describe('/GET comments', () => {
+    it('it should GET all the comments', (done) => {
       chai.request(app)
-        .get('/movies')
+        .get('/comments')
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('array');
@@ -27,48 +27,50 @@ describe('Movies', () => {
     });
   });
   // test post route
-  describe('/POST movies', () => {
-    it('it should POST a movie with proper title', (done) => {
-      const movie = {
-        title: 'Shrek',
+  describe('/POST comments', () => {
+    it('it should POST a comment about a movie with proper ID', (done) => {
+      const comment = {
+        id: 'tt0126029',
+        text: 'Cucumba!',
       };
       chai.request(app)
-        .post('/movies')
-        .send(movie)
+        .post('/comments')
+        .send(comment)
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
-          res.body.should.have.property('movie');
-          res.body.movie.should.have.property('Title');
+          res.body.should.have.property('comment');
+          res.body.comment.should.have.property('text');
           done();
         });
     });
-    it('it should not POST a movie without a title', (done) => {
+    it('it should not POST a comment without an id', (done) => {
       const movie = {
-        title: '',
+        text: 'Gimme my id back!',
       };
       chai.request(app)
-        .post('/movies')
+        .post('/comments')
         .send(movie)
         .end((err, res) => {
-          res.should.have.status(418);
+          res.should.have.status(200);
           res.body.should.be.a('object');
           res.body.should.have.property('error');
           done();
         });
     });
     it('it should respond properly to random gibberish', (done) => {
-      const movie = {
-        title: 'asfdsfcxaa^&^^^',
+      const comment = {
+        id: 'asfdsfcxaa^&^^^',
+        text: 'asdaxccdsc',
       };
       chai.request(app)
-        .post('/movies')
-        .send(movie)
+        .post('/comments')
+        .send(comment)
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
           res.body.should.have.property('error');
-          res.body.error.should.eql('Movie not found in OMDB and database.');
+          res.body.error.should.eql('Movie not found.');
           done();
         });
     });
