@@ -1,7 +1,8 @@
 # Simple Rest Movie API
 
-This API serves data received from [OMDB API](http://www.omdbapi.com/) and saved in application's database.
-Applications source code contains free, limited OMDB API key.
+This API serves data received from [OMDB API](http://www.omdbapi.com/) and saved in application's database.   
+Applications source code contains free, limited OMDB API key.   
+Public demo: [CLICK](https://simple-rest-movie-api.herokuapp.com/)
 
 ------
 
